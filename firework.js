@@ -1,7 +1,3 @@
-// Daniel Shiffman
-// http://codingtra.in
-// https://youtu.be/CKeyIbT3vXI
-
 class Firework {
   constructor() {
     this.hu = random(255);
@@ -11,11 +7,7 @@ class Firework {
   }
 
   done() {
-    if (this.exploded && this.particles.length === 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.exploded && this.particles.length === 0;
   }
 
   update() {
@@ -40,7 +32,7 @@ class Firework {
   }
 
   explode() {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 250; i++) { // nổ to hơn (100 -> 250)
       const p = new Particle(this.firework.pos.x, this.firework.pos.y, this.hu, false);
       this.particles.push(p);
     }
@@ -51,8 +43,8 @@ class Firework {
       this.firework.show();
     }
 
-    for (var i = 0; i < this.particles.length; i++) {
-      this.particles[i].show();
+    for (let p of this.particles) {
+      p.show();
     }
   }
 }

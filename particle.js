@@ -1,7 +1,3 @@
-// Daniel Shiffman
-// http://codingtra.in
-// https://youtu.be/CKeyIbT3vXI
-
 class Particle {
   constructor(x, y, hu, firework) {
     this.pos = createVector(x, y);
@@ -9,11 +5,12 @@ class Particle {
     this.lifespan = 255;
     this.hu = hu;
     this.acc = createVector(0, 0);
+
     if (this.firework) {
-      this.vel = createVector(0, random(-12, -8));
+      this.vel = createVector(0, random(-15, -10)); // bay cao hơn
     } else {
       this.vel = p5.Vector.random2D();
-      this.vel.mult(random(2, 10));
+      this.vel.mult(random(6, 18)); // lan rộng hơn, pháo to hơn
     }
   }
 
@@ -32,21 +29,17 @@ class Particle {
   }
 
   done() {
-    if (this.lifespan < 0) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.lifespan < 0;
   }
 
   show() {
     colorMode(HSB);
 
     if (!this.firework) {
-      strokeWeight(2);
+      strokeWeight(4); // hạt pháo to hơn
       stroke(this.hu, 255, 255, this.lifespan);
     } else {
-      strokeWeight(4);
+      strokeWeight(6); // tia pháo chính to hơn
       stroke(this.hu, 255, 255);
     }
 
